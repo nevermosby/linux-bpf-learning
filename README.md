@@ -8,7 +8,8 @@
   
   本人自己的实验环境是`Ubuntu 18.04`标准版vagrant虚拟机，内核版本为`4.15.0`。可以从这里下载该vagrant虚拟机环境，已安装bcc工具集合：
   
-  > 下载链接: https://pan.baidu.com/s/11dsEU6Yk6KGDGNor-fbsgQ 提取码: qvhc
+  > 下载链接: https://pan.baidu.com/s/11dsEU6Yk6KGDGNor-fbsgQ 提取码: qvhc。
+  > 使用方式可以参考[这篇文章](https://davidlovezoe.club/ebpf-learning-bcc-intro)。
   
   以下命令如无特殊说明，均在Ubuntu环境下测试执行。
 
