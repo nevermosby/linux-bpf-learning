@@ -1,5 +1,5 @@
-#include <linux/bpf.h>
 #include <stdbool.h>
+#include <linux/bpf.h>
 #include <linux/if_ether.h>
 #include <linux/ip.h>
 #include <linux/in.h>
@@ -8,34 +8,7 @@
 #include "bpf_endian.h"
 #include "bpf_helpers.h"
 
-#define SEC(NAME) __attribute__((section(NAME), used))
-static bool is_TCP(void *data_begin, void *data_end);
-
-SEC("xdp")
-int xdp_drop_tcp(struct xdp_md *ctx)
-{
-
-  void *data_end = (void *)(long)ctx->data_end;
-  void *data = (void *)(long)ctx->data;
-
-  if (is_TCP(data, data_end))
-    return XDP_DROP;
-
-  return XDP_PASS;
-}
-
-SEC("tc")
-int tc_drop_tcp(struct __sk_buff *skb)
-{
-
-  void *data = (void *)(long)skb->data;
-  void *data_end = (void *)(long)skb->data_end;
-
-  if (is_TCP(data, data_end)) 
-    return TC_ACT_SHOT;
-
-  return TC_ACT_OK;
-}
+// static bool is_TCP(void *data_begin, void *data_end);
 
 /*
   check whether the packet is of TCP protocol
@@ -62,6 +35,32 @@ static bool is_TCP(void *data_begin, void *data_end){
   }
 
   return false;
+}
+
+SEC("xdp")
+int xdp_drop_tcp(struct xdp_md *ctx)
+{
+
+  void *data_end = (void *)(long)ctx->data_end;
+  void *data = (void *)(long)ctx->data;
+
+  if (is_TCP(data, data_end))
+    return XDP_DROP;
+
+  return XDP_PASS;
+}
+
+SEC("tc")
+int tc_drop_tcp(struct __sk_buff *skb)
+{
+
+  void *data = (void *)(long)skb->data;
+  void *data_end = (void *)(long)skb->data_end;
+
+  if (is_TCP(data, data_end)) 
+    return TC_ACT_SHOT;
+
+  return TC_ACT_OK;
 }
 
 char _license[] SEC("license") = "GPL";
