@@ -17,7 +17,7 @@ cd linux_sourcecode/
 # 生成内核编译时需要的头文件
 make headers_install
 # 生成.config文件为下面执行命令做准备
-make defconfig
+make menuconfig
 # 使用make命令编译samples/bpf/目录下所有bpf示例代码，注意需要加上最后的/符号
 make samples/bpf/ # or  make M=samples/bpf
 
@@ -51,7 +51,7 @@ make: *** [samples/bpf/] Error 2
 # 查看./tools/perf/perf-sys.h这个文件，发现报错的那一行是test开头
 # 通过Google发现了内核大佬们的邮件来往：https://www.spinics.net/lists/netdev/msg608676.html
 # 大佬建议由于是测试相关的代码，所以可以skip掉。
-# 修改完的文件就是同目录下的perf-sys.h
+# 修改完的文件就是同目录下的perf-sys.h,请斟酌参考
 # 重新运行一下命令
 make samples/bpf/ # and it works
 ```
