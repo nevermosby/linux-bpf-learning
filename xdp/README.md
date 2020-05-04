@@ -30,6 +30,7 @@
    ip link set dev [network-device-name] xdp off
    ```
 - 完整Demo视频
+
   [![xdp-bpf-demo](https://img.youtube.com/vi/GD6pJLPd08U/0.jpg)](https://www.youtube.com/watch?v=GD6pJLPd08U)
 
 - 小结
@@ -106,14 +107,18 @@
   从上面的例子可以看到`xdpgeneric`模式下只会对传给目标网卡的数据包进行丢弃，不会影响从目标网卡出去的数据包，也就是只影响ingress流量。那么能不能控制egress流量呢？
 
 ## 测试xdp下的ingress和egress
+**说明**：
+curl命令的`--dns-server`参数能帮助curl使用自定义的域名解析服务器，否则无法解析域名，只能访问IP。
+这个参数在很多Linux发行版的curl里面没有编译进去，需要自行重新编译curl，带上该参数。可以参照这篇文章自定义curl命令：https://davidlovezoe.club/build-curl-from-source
+
 - ingress
   ```bash
   curl localhost
   ```
 - egress
   ```bash
-  # --dns-server参数能帮助curl使用自定义的域名解析服务器，否则无法解析域名，只能访问IP
-  # 这个参数在很多Linux发行版的curl里面没有编译进去，需要自行重新编译curl，带上该参数
+  # curl-new是自己编译的版本，支持--dns-server参数
+  # 下面这行是指定自己编译出来curl命令的lib库，否则无法使用curl
   export LD_LIBRARY_PATH=/usr/local/curl/fromsource/lib
-  ip netns exec httpserver curl-s --dns-servers 8.8.8.8 www.baidu.com
+  ip netns exec httpserver curl-new --dns-servers 8.8.8.8 www.baidu.com
   ```
