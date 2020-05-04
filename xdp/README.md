@@ -102,9 +102,17 @@
    ```
 - 完整Demo视频
   - 从容器外访问NGINX http服务
+ 
+   [![xdp-bpf-docker-ingress-demo](https://img.youtube.com/vi/SFDIsDoJG60/0.jpg)](https://www.youtube.com/watch?v=SFDIsDoJG60)
+
   - 从容器内访问某个http服务
+  
+   [![xdp-bpf-docker-engress-demo](https://img.youtube.com/vi/9O6PBnkxMOM/0.jpg)](https://www.youtube.com/watch?v=9O6PBnkxMOM)
+
+  
 - 小结
-  从上面的例子可以看到`xdpgeneric`模式下只会对传给目标网卡的数据包进行丢弃，不会影响从目标网卡出去的数据包，也就是只影响ingress流量。那么能不能控制egress流量呢？
+
+  从上面的例子可以看到XDP BPF程序只会对传给目标网卡的数据包进行丢弃，不会影响从目标网卡出去的数据包，也就是只影响ingress流量。那么能不能控制egress流量呢？
 
 ## 测试xdp下的ingress和egress
 **说明**：
