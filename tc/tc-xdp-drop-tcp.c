@@ -64,22 +64,3 @@ int tc_drop_tcp(struct __sk_buff *skb)
 }
 
 char _license[] SEC("license") = "GPL";
-
-
-// int ipsize = 0;
-//   struct ethhdr *eth = data;
-//   ipsize = sizeof(*eth);
-
-//   struct iphdr *ip = data + ipsize;
-//   ipsize += sizeof(struct iphdr);
-//   if (data + ipsize > data_end)
-//   {
-//     return TC_ACT_OK;
-//   }
-
-//   if (ip->protocol == IPPROTO_TCP)
-//   {
-//     return TC_ACT_SHOT;
-//   }
-
-//   return TC_ACT_OK;
