@@ -9,6 +9,11 @@
  */
 #define SEC(NAME) __attribute__((section(NAME), used))
 
+#ifndef __inline
+# define __inline                         \
+   inline __attribute__((always_inline))
+#endif
+
 /* helper functions called from eBPF programs written in C */
 static void *(*bpf_map_lookup_elem)(void *map, void *key) =
 	(void *) BPF_FUNC_map_lookup_elem;
