@@ -6,6 +6,9 @@
 - [Early packet drop — and more — with BPF](https://davidlovezoe.club/ebpf-learning-xdp-init-intro)
 
 ## 编译Linux内核源码bpf示例代码 samples/bpf 
+
+0. 详细说明可以查看博文：[https://davidlovezoe.club/compile-bpf-examples](https://davidlovezoe.club/compile-bpf-examples)
+
 1. 下载你的实验环境对应的内核版本的Linux内核源代码
 2. 保证你的实验环境已经安装`clang`和`llvm`
     * clang >= version 3.4.0

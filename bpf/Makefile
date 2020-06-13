@@ -1,3 +1,4 @@
+# For v4.15.0
 # SPDX-License-Identifier: GPL-2.0
 # List of programs to build
 hostprogs-y := test_lru_dist
@@ -41,6 +42,8 @@ hostprogs-y += xdp_redirect_map
 hostprogs-y += xdp_redirect_cpu
 hostprogs-y += xdp_monitor
 hostprogs-y += syscall_tp
+# new 0:
+hostprogs-y += my_bpf_101
 
 # Libbpf dependencies
 LIBBPF := ../../tools/lib/bpf/bpf.o
@@ -89,6 +92,8 @@ xdp_redirect_map-objs := bpf_load.o $(LIBBPF) xdp_redirect_map_user.o
 xdp_redirect_cpu-objs := bpf_load.o $(LIBBPF) xdp_redirect_cpu_user.o
 xdp_monitor-objs := bpf_load.o $(LIBBPF) xdp_monitor_user.o
 syscall_tp-objs := bpf_load.o $(LIBBPF) syscall_tp_user.o
+# new 1:
+my_bpf_101-objs := bpf_load.o $(LIBBPF) my_bpf_101_user.o
 
 # Tell kbuild to always build the programs
 always := $(hostprogs-y)
@@ -137,6 +142,9 @@ always += xdp_redirect_map_kern.o
 always += xdp_redirect_cpu_kern.o
 always += xdp_monitor_kern.o
 always += syscall_tp_kern.o
+# new 3:
+always += my_bpf_101_kern.o
+
 
 HOSTCFLAGS += -I$(objtree)/usr/include
 HOSTCFLAGS += -I$(srctree)/tools/lib/
