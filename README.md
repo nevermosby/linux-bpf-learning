@@ -1,7 +1,7 @@
 # 学习Linux BPF/eBPF 编程
 
 打造学习BPF知识的中文社区。学习计划如下:
-![bpf-learning-path](https://davidlovezoe.club/wordpress/wp-content/uploads/2020/04/eBPF-learning-mindset.png)
+![bpf-learning-path](https://davidlovezoe.club/wordpress/wp-content/uploads/2020/06/eBPF-learning-002-2048x1528.png)
 
 ## 相关博文参考
 - 中文版：https://davidlovezoe.club/wordpress/archives/tag/bpf
