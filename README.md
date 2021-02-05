@@ -53,4 +53,36 @@
 - [网络XDP编程](./xdp/README.md) 
 - [网络TC编程](./tc/README.md)
 
+## 常见问题Q&A
+### 1. 'asm/type.h' file not found
+
+- 错误现象
+
+  在执行下面命令进行代码编译时，可能会遇到某些头文件找不到的错误：
+
+  ```shell
+  clang -I ./headers/ -O2 -target bpf -c tc-xdp-drop-tcp.c -o tc-xdp-drop-tcp.o
+
+  In file included from tc-xdp-drop-tcp.c:2:
+  In file included from /usr/include/linux/bpf.h:11:
+  /usr/include/linux/types.h:5:10: fatal error: 'asm/types.h' file not found
+  #include <asm/types.h>
+          ^~~~~~~~~~~~~
+  1 error generated.
+  ```
+
+- 原因分析
+
+  在源代码文件中引用了某些系统目录（一般为`/usr/include/`）下的头文件，而这些头文件没有出现在目标路径下，导致编译失败。
+  
+  如上述问题中的asm相关文件，asm全称`Architecture Specific Macros`，直译过来“与机器架构相关的宏文件”，顾名思义它是跟机器架构密切相关的，不同的架构x86、x64、arm实现是不一样的，而操作系统并没有提供`/usr/include/asm/`这样通用的目录，只提供了具体架构相关的目录，如`/usr/include/x86_64-linux-gnu/asm/`，因此无法找到引用。
+
+- 解决方案
+  
+  添加软链`/usr/include/asm/`，指向操作系统自带的asm目录：
+  ```shell
+  cd /usr/include
+  ln -s x86_64-linux-gnu/asm/ asm
+  ```
+
 ## 参考材料
