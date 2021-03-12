@@ -82,7 +82,7 @@
   添加软链`/usr/include/asm/`，指向操作系统自带的asm目录：
   ```shell
   cd /usr/include
-  ln -s x86_64-linux-gnu/asm/ asm
+  ln -s ./x86_64-linux-gnu/asm asm
   ```
 
 ## 参考材料
