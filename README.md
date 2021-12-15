@@ -84,5 +84,14 @@
   cd /usr/include
   ln -s ./x86_64-linux-gnu/asm asm
   ```
-
+### 2. 'bpf/bpf_helpers.h' file not found
+- 解决方案
+  
+  ```shell
+  apt-get install libbpf-dev
+  # run `apt-file update` if needed
+  apt-file list libbpf-dev | grep bpf_helpers.h
+  # you will get the result like: libbpf-dev: /usr/include/bpf/bpf_helpers.h
+  ```
+  
 ## 参考材料
