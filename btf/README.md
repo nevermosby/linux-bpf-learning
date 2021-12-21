@@ -22,14 +22,57 @@ BTF (BPF Type Format) 是作为一个更通用，更详细的DWARF调试信息�
 
 ## BTF的应用
 1. 内核开启BTF
-
     启用CONFIG_DEBUG_INFO_BTF=y内核选项即可。内核本身可以使用BTF功能，用于增强BPF验证程序自身的功能。
+
+2. 程序中声明使用BTF Map
+    使用`SEC(.maps)`宏定义（是在这个[commit](https://github.com/libbpf/libbpf/commit/ec13b303499c881496116881784883c9e44e436b)中引入）
 
 ### 对比使用前后的差别
 
+```s
+> llvm-objdump -h btf_xdp_cnt.o 
+
+btf_xdp_cnt.o:  file format elf64-bpf
+
+Sections:
+Idx Name             Size     VMA              Type
+  0                  00000000 0000000000000000 
+  1 .strtab          000000e3 0000000000000000 
+  2 .text            00000000 0000000000000000 TEXT
+  3 xdp_count        00000120 0000000000000000 TEXT
+  4 .relxdp_count    00000020 0000000000000000 
+  5 .maps            00000020 0000000000000000 DATA
+  6 license          00000004 0000000000000000 DATA
+  7 .debug_loc       0000017c 0000000000000000 DEBUG
+  8 .debug_abbrev    00000119 0000000000000000 DEBUG
+  9 .debug_info      0000028e 0000000000000000 DEBUG
+ 10 .rel.debug_info  000003d0 0000000000000000 
+ 11 .debug_str       000001b7 0000000000000000 DEBUG
+ 12 .BTF             000004d4 0000000000000000 
+ 13 .rel.BTF         00000020 0000000000000000 
+ 14 .BTF.ext         00000140 0000000000000000 
+ 15 .rel.BTF.ext     00000110 0000000000000000 
+ 16 .debug_frame     00000028 0000000000000000 DEBUG
+ 17 .rel.debug_frame 00000020 0000000000000000 
+ 18 .debug_line      00000146 0000000000000000 DEBUG
+ 19 .rel.debug_line  00000010 0000000000000000 
+ 20 .llvm_addrsig    00000003 0000000000000000 
+ 21 .symtab          00000150 0000000000000000
+```
+
 ## BTF工作机制
+
+1. 初始化机制
+bpf_object__init_maps(https://github.com/libbpf/libbpf/blob/master/src/libbpf.c#L2568) -> 
+bpf_object__init_user_btf_maps(https://github.com/libbpf/libbpf/blob/master/src/libbpf.c#L2516) -> 
+bpf_object__init_user_btf_map ->
+bpf_object__add_map: https://github.com/libbpf/libbpf/blob/master/src/libbpf.c#L1401 
+
 
 ## 联合BPF CO-RE机制
 
 ## 参考链接
-- https://www.containiq.com/post/btf-bpf-type-format 
+- https://www.containiq.com/post/btf-bpf-type-format
+- https://github.com/libbpf/libbpf/blob/master/src/btf.h 
+- https://github.com/libbpf/libbpf/blob/master/src/libbpf.c#L2516
+- https://github.com/libbpf/libbpf/blob/master/src/libbpf.c#L2579
