@@ -7,7 +7,7 @@
 - 中文版：https://davidlovezoe.club/wordpress/archives/tag/bpf
 
 ## 实验环境准备
-- Linux操作系统，推荐使用最新稳定内核版本.
+- Linux操作系统(喜欢尝鲜新版内核的同学，推荐使用[bumblebee](https://bumblebee.io/ZH)的[vagrantfile](https://github.com/solo-io/bumblebee/blob/main/Vagrantfile))
   
   本人自己的实验环境是`Ubuntu 18.04`标准版vagrant虚拟机，内核版本为`4.15.0`。可以从这里下载该vagrant虚拟机环境，已安装bcc工具集合：
   
@@ -94,4 +94,9 @@
   # you will get the result like: libbpf-dev: /usr/include/bpf/bpf_helpers.h
   ```
   
+## slack社区
+
+感兴趣可[加入](https://join.slack.com/t/learning-bpf/shared_invite/zt-11j06js9e-VMnpk9ZOlfgukA75FNJvZA)
+
 ## 参考材料
+
