@@ -52,6 +52,7 @@
   - 编译Linux内核所有bpf示例代码
 - [网络XDP编程](./xdp/README.md) 
 - [网络TC编程](./tc/README.md)
+- [btf入门](./btf/README.md)
 
 ## 常见问题Q&A
 ### 1. 'asm/type.h' file not found
