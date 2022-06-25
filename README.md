@@ -98,7 +98,7 @@
   
 ## slack社区
 
-感兴趣可[加入](https://join.slack.com/t/learning-bpf/shared_invite/zt-11j06js9e-VMnpk9ZOlfgukA75FNJvZA)
+感兴趣可[加入](https://join.slack.com/t/learning-bpf/shared_invite/zt-1bgiyr7rm-AHMOlzjqJXKGYMcOzjP4XQ)
 
 ## 参考材料
 
